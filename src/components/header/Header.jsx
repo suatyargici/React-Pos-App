@@ -39,7 +39,7 @@ const Header = () => {
           </Link>
           <Badge count={5} offset={[0,6]} className="md:flex hidden">
             <Link
-              to={"/"}
+              to={"/cart"}
               className="menu-link flex flex-col hover:text-[#40a9ff] transition-all"
             >
               <ShoppingCartOutlined className="md:text-2xl text-xl" />
@@ -47,7 +47,7 @@ const Header = () => {
             </Link>
           </Badge>
           <Link
-            to={"/"}
+            to={"/bills"}
             className="menu-link flex flex-col hover:text-[#40a9ff] transition-all"
           >
             <CopyOutlined className="md:text-2xl text-xl" />
