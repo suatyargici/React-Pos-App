@@ -96,18 +96,18 @@ const StatisticPage = () => {
   return (
     <>
       <Header />
-      <div className="px-6">
+      <div className="px-6 md:pb-0 pb-20">
         <h1 className="text-4xl font-bold text-center mb-4">İstatistiklerim</h1>
         <div className="statistic-section">
           <h2 className="text-lg">
             Hoş geldin{" "}
             <span className="text-green-700 font-bold text-xl">admin</span>.
           </h2>
-          <div className="flex gap-x-5 mx-auto justify-center mt-10">
-            <div>
+          <div className="flex justify-between gap-10 lg:flex-row flex-col items-center">
+          <div className="lg:w-1/2 lg:h-full h-72">
               <Area {...config} />
             </div>
-            <div>
+            <div className="lg:w-1/2 lg:h-full h-72">
               <Pie {...config2} />
             </div>
           </div>
