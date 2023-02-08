@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./pages/auth/Login.jsx";
 import Register from "./pages/auth/Register.jsx";
 import BillPage from "./pages/BillPage.jsx";
 import CartPage from "./pages/CartPage.jsx";

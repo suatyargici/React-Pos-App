@@ -1,4 +1,4 @@
-import { Button, Form, Input } from "antd";
+import { Button, Carousel, Form, Input } from "antd";
 import { Link } from "react-router-dom";
 import AuthCarousel from "../../components/auth/AuthCarousel";
 
