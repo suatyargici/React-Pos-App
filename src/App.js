@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Register from "./pages/auth/Register.jsx";
 import BillPage from "./pages/BillPage.jsx";
 import CartPage from "./pages/CartPage.jsx";
 import CustomerPage from "./pages/CustomerPage.jsx";
@@ -16,7 +17,7 @@ const App = () => {
           <Route path="/bills" element={<BillPage />} />
           <Route path="/customers" element={<CustomerPage />} />
           <Route path="/statistic" element={<StatisticPage />} />
-
+          <Route path="/register" element={<Register/>} />
         </Routes>
       </BrowserRouter>
     </>
