@@ -1,5 +1,11 @@
-console.log("Hello World")
+const express = require("express");
 
-const a = 8;
-const b = 10;
-console.log(a + b);
+const app = express();
+const port = 5000;
+
+app.get("/", (req,res)=> res.send("Hello World!"))
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
+});
+
