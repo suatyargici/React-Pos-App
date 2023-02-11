@@ -52,7 +52,18 @@ const Register = () => {
                 {
                   required: true,
                   message: "Şifre Tekrar Alanı Boş Bırakılamaz!",
-                },
+                }, ({ getFieldValue }) => ({
+                  validator(_, value) {
+                    if (!value || getFieldValue("password") === value) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject(
+                      new Error(
+                        "Şifreler Aynı Olmak Zorunda!"
+                      )
+                    );
+                  },
+                }),
               ]}
             >
               <Input.Password />
