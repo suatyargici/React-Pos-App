@@ -3,8 +3,13 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const app = express();
 const port = 5000;
+const cors = require("cors");
 
-dotenv.config(); 
+// routes
+
+const categoryRoute = require("./routes/categories.js");
+
+dotenv.config();
 
 const connect = async () => {
   try {
@@ -14,6 +19,12 @@ const connect = async () => {
     throw error;
   }
 };
+
+// middelwares
+app.use(express.json());
+app.use(cors());
+
+app.use("/api/categories", categoryRoute);
 
 app.get("/", (req, res) => res.send("Hello World!"));
 
