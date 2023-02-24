@@ -1,4 +1,5 @@
 import { Badge, Input } from "antd";
+import { useTranslation, initReactI18next } from "react-i18next";
 
 import { Link } from "react-router-dom";
 import {
@@ -12,6 +13,7 @@ import {
 } from "@ant-design/icons";
 import Switch from "../Switch";
 const Header = () => {
+  const { t } = useTranslation()
   return (
     <div className="border-b mb-6">
       <header className="py-4 px-6 flex justify-between items-center gap-10">
@@ -21,6 +23,7 @@ const Header = () => {
           </Link>
         </div>
         <Switch />
+        {t("welcome")}
         <div className="header-search flex-1 flex justify-center">
           <Input
             size="large"
