@@ -1,3 +1,10 @@
 {
-    "welcome":"welcome JSON"
+    "welcome":"welcome",
+    "home-page":"Home Page",
+    "basket":"basket",
+    "bills":"Bills",
+    "customers":"Customers",
+    "statistics":"Statistics",
+    "logout":"Logout"
+
 }

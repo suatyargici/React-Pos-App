@@ -1,3 +1,9 @@
 {
-    "welcome":"HOŞGELDİN"
+    "welcome":"HOŞGELDİN",
+    "home-page":"Ana Sayfa",
+    "basket":"Sepet",
+    "bills":"Faturalar",
+    "customers":"Müşteriler",
+    "statistics":"İstatistikler",
+    "logout":"Çıkış"
 }

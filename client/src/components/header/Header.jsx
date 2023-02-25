@@ -38,7 +38,7 @@ const Header = () => {
             className="menu-link flex flex-col hover:text-[#40a9ff] transition-all"
           >
             <HomeOutlined className="md:text-2xl text-xl" />
-            <span className="md:text-xs text-[10px]">Ana Sayfa</span>
+            <span className="md:text-xs text-[10px]">{t("home-page")}</span>
           </Link>
           <Badge count={5} offset={[0,6]} className="md:flex hidden">
             <Link
@@ -46,7 +46,7 @@ const Header = () => {
               className="menu-link flex flex-col hover:text-[#40a9ff] transition-all"
             >
               <ShoppingCartOutlined className="md:text-2xl text-xl" />
-              <span className="md:text-xs text-[10px]">Sepet</span>
+              <span className="md:text-xs text-[10px]">{t("basket")}</span>
             </Link>
           </Badge>
           <Link
@@ -54,28 +54,28 @@ const Header = () => {
             className="menu-link flex flex-col hover:text-[#40a9ff] transition-all"
           >
             <CopyOutlined className="md:text-2xl text-xl" />
-            <span className="md:text-xs text-[10px]">Faturalar</span>
+            <span className="md:text-xs text-[10px]">{t("bills")}</span>
           </Link>
           <Link
             to={"/customers"}
             className="menu-link flex flex-col hover:text-[#40a9ff] transition-all"
           >
             <UserOutlined className="md:text-2xl text-xl" />
-            <span className="md:text-xs text-[10px]">Müşteriler</span>
+            <span className="md:text-xs text-[10px]">{t("customers")}</span>
           </Link>
           <Link
             to={"/statistic"}
             className="menu-link flex flex-col hover:text-[#40a9ff] transition-all"
           >
             <BarChartOutlined className="md:text-2xl text-xl" />
-            <span className="md:text-xs text-[10px]">İstatistikler</span>
+            <span className="md:text-xs text-[10px]">{t("statistics")}</span>
           </Link>
           <Link
             to={"/"}
             className="menu-link flex flex-col hover:text-[#40a9ff] transition-all"
           >
             <LogoutOutlined className="md:text-2xl text-xl" />
-            <span className="md:text-xs text-[10px]">Çıkış</span>
+            <span className="md:text-xs text-[10px]">{t("logout")}</span>
           </Link>
         </div>
         <Badge count={5} offset={[0,6]} className="md:hidden flex">
