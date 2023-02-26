@@ -5,5 +5,7 @@
     "bills":"Faturalar",
     "customers":"Müşteriler",
     "statistics":"İstatistikler",
-    "logout":"Çıkış"
+    "logout":"Çıkış",
+    "name":"İsim",
+    "total":"Toplam"
 }

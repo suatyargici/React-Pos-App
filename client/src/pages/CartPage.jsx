@@ -1,4 +1,5 @@
 import { Button, Card, Table } from "antd";
+import { t } from "i18next";
 import { useState } from "react";
 import CreateBill from "../components/cart/CreateBill.jsx";
 import Header from "../components/header/Header.jsx";
@@ -22,7 +23,7 @@ const CartPage = () => {
 
   const columns = [
     {
-      title: "Name",
+      title: t("name"),
       dataIndex: "name",
       key: "name",
     },
@@ -59,7 +60,7 @@ const CartPage = () => {
               <span className="text-red-600">+43.92₺</span>
             </div>
             <div className="flex justify-between">
-              <b>Toplam</b>
+              <b>{t("total")}</b>
               <b>592.92₺</b>
             </div>
             <Button

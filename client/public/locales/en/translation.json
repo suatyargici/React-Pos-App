@@ -5,6 +5,8 @@
     "bills":"Bills",
     "customers":"Customers",
     "statistics":"Statistics",
-    "logout":"Logout"
+    "logout":"Logout",
+    "name":"Name",
+    "total":"Total"
 
 }
