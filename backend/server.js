@@ -5,8 +5,11 @@ const app = express();
 const cors = require("cors")
 const port = 5000;
 
+
 const categoryRoute = require("./routes/categories.js");
 const productRoute = require("./routes/products.js");
+const billRoute = require("./routes/bills.js");
+
 
 dotenv.config(); 
 
@@ -21,9 +24,12 @@ const connect = async () => {
 
 app.use(express.json());
 app.use(cors());
-// app.get("/", (req, res) => res.send("Hello World!"));
+
+app.use("/api/bills", billRoute);
+
 app.use("/api/categories",categoryRoute)
 app.use("/api/products", productRoute);
+
 
 app.listen(port, () => {
   connect();
