@@ -14,7 +14,6 @@ import {
   LogoutOutlined,
 } from "@ant-design/icons";
 import Switch from "../Switch";
-import SwitchDark from "../SwitchDark";
 import { useEffect, useState } from "react";
 const Header = () => {
   const { t } = useTranslation();
