@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import PropTypes from "prop-types"
 
 const Switch = () => {
   const { t, i18n } = useTranslation();
@@ -39,5 +40,12 @@ const Switch = () => {
     </div>
   );
 };
+
+Switch.propTypes = {
+  isSelected: PropTypes.bool,
+  setIsSelected: PropTypes.func,
+  handleClick: PropTypes.func,
+};
+
 
 export default Switch;
