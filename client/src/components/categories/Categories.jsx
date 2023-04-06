@@ -2,51 +2,37 @@ import { PlusOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import { Button, Form, Input, message, Modal } from "antd";
 import "./style.css";
+import axios from "axios";
+import { useQueryClient } from "react-query";
 
-const Categories = () => {
+const Categories = ({ data}) => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [form] = Form.useForm();
 
-  const onFinish = (values) => {
+  const queryClient = useQueryClient()
+  const onFinish = async (values) => {
     try {
-      fetch("http://localhost:5000/api/categories/add-category", {
-        method: "POST",
-        body: JSON.stringify(values),
-        headers: { "Content-type": "application/json; charset=UTF-8" },
-      });
-      message.success("Kategori başarıyla eklendi.");
+      const { data } = await axios.post(
+        "http://localhost:5000/api/categories/add-category",
+        values
+      );
+      message.success(data.message);
       form.resetFields();
+      setIsAddModalOpen(false);
+      queryClient.invalidateQueries("category")
     } catch (error) {
-      console.log(error);
+      message.error(error.response.data.message);
     }
   };
 
+
   return (
-    <ul className="flex gap-4 md:flex-col text-lg">
-      <li className="category-item">
-        <span>Tümü</span>
-      </li>
-      <li className="category-item">
-        <span>Yiyecek</span>
-      </li>
-      <li className="category-item">
-        <span>İçecek</span>
-      </li>
-      <li className="category-item">
-        <span>İçecek</span>
-      </li>
-      <li className="category-item">
-        <span>İçecek</span>
-      </li>
-      <li className="category-item">
-        <span>İçecek</span>
-      </li>
-      <li className="category-item">
-        <span>İçecek</span>
-      </li>
-      <li className="category-item">
-        <span>İçecek</span>
-      </li>
+    <ul className="flex w-[200px] gap-4 text-lg md:flex-col">
+      {data?.map((item) => (
+        <li className="category-item" key={item._id}>
+          <span>{item.title}</span>
+        </li>
+      ))}
       <li
         className="category-item !bg-purple-800 hover:opacity-90"
         onClick={() => setIsAddModalOpen(true)}
@@ -59,7 +45,10 @@ const Categories = () => {
         onCancel={() => setIsAddModalOpen(false)}
         footer={false}
       >
-        <Form layout="vertical" onFinish={onFinish} form={form}>
+        <Form layout="vertical"
+         
+         onFinish={onFinish}
+        form={form}>
           <Form.Item
             name="title"
             label="Kategori Ekle"
@@ -69,7 +58,7 @@ const Categories = () => {
           >
             <Input />
           </Form.Item>
-          <Form.Item className="flex justify-end mb-0">
+          <Form.Item className="mb-0 flex justify-end">
             <Button type="primary" htmlType="submit">
               Oluştur
             </Button>
@@ -80,4 +69,4 @@ const Categories = () => {
   );
 };
 
-export default Categories
+export default Categories;

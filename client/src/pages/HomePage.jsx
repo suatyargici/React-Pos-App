@@ -1,20 +1,33 @@
+import { useEffect, useState } from "react";
 import CartTotals from "../components/cart/cartTotals";
 import Categories from "../components/categories/Categories";
 import Header from "../components/header/Header";
 import Products from "../components/products/Products";
+import axios from "axios";
+import { useQuery, useMutation, useQueryClient } from "react-query"
+
 
 const HomePage = () => {
+  const [categories, setCategories] = useState([]);
+
+
+  const getCategories =()=>{
+    return axios.get(`http://localhost:5000/api/categories/get-all`)
+}
+
+  const { data } = useQuery("category",getCategories);
+  console.log('data :>> ', data);
   return (
     <>
       <Header />
-      <div className="home px-6 flex md:flex-row flex-col justify-between gap-10 md:pb-0 pb-24">
-        <div className="categories overflow-auto max-h-[calc(100vh_-_112px)] md:pb-10">
-          <Categories />
+      <div className="home flex flex-col justify-between gap-10 px-6 pb-24 md:flex-row md:pb-0">
+        <div className="categories max-h-[calc(100vh_-_112px)] overflow-auto md:pb-10">
+          <Categories data={data?.data} />
         </div>
-        <div className="products flex-[8] max-h-[calc(100vh_-_112px)] overflow-y-auto pb-10">
+        <div className="products max-h-[calc(100vh_-_112px)] flex-[8] overflow-y-auto pb-10">
           <Products />
         </div>
-        <div className="cart-wrapper min-w-[300px] md:-mr-[24px] md:-mt-[24px] border">
+        <div className="cart-wrapper min-w-[300px] border md:-mr-[24px] md:-mt-[24px]">
           <CartTotals />
         </div>
       </div>
