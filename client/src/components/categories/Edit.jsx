@@ -1,7 +1,7 @@
 import { Button, Form, Input, message, Modal, Table } from "antd";
 import axios from "axios";
 import React, { useState } from "react";
-import { useQueryClient } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 
 const Edit = ({
   isEditModalOpen,
@@ -10,43 +10,39 @@ const Edit = ({
   setCategories,
 }) => {
   const [editingRow, setEditingRow] = useState({});
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
 
   const onFinish = (values) => {
     console.log(values);
     try {
-     axios.put("http://localhost:5000/api/categories/update-category",{
-        title:values.title,
-        _id:editingRow._id
-     })
-     message.success("Kategori başarıyla güncellendi.");
-     setIsEditModalOpen(false);
-     queryClient.invalidateQueries("category")
-
- 
-   
+      axios.put("http://localhost:5000/api/categories/update-category", {
+        title: values.title,
+        _id: editingRow._id,
+      });
+      message.success("Kategori başarıyla güncellendi.");
+      setIsEditModalOpen(false);
+      queryClient.invalidateQueries("category");
     } catch (error) {
       message.success("Bir şeyler yanlış gitti.");
       console.log(error);
     }
   };
 
-  const deleteCategory = (id)=>{
-    try {
-      axios.delete(`http://localhost:5000/api/categories/delete-category`,{
-        data:{
-          _id:id
+  const deleteCategory = useMutation({
+    mutationKey: "category",
+    mutationFn: async (id) => {
+      await axios.delete(
+        `http://localhost:5000/api/categories/delete-category`,
+        {
+          data: {
+            _id: id,
+          },
         }
-      })
+      );
       message.success("Kategori başarıyla silindi.");
-      setIsEditModalOpen(false);
-      queryClient.invalidateQueries("category")
-    } catch (error) {
-      message.success("Bir şeyler yanlış gitti.");
-      console.log(error);
-    }
-  }
-
+      queryClient.invalidateQueries("category");
+    },
+  });
   const columns = [
     {
       title: "Category Title",
@@ -79,8 +75,11 @@ const Edit = ({
             <Button type="link" htmlType="submit" className="text-gray-500">
               Kaydet
             </Button>
-            <Button type="link" danger
-            onClick={()=>deleteCategory(record._id)}
+            <Button
+              type="link"
+              danger
+             
+              onClick={() => deleteCategory.mutate(record._id)}
             >
               Sil
             </Button>
