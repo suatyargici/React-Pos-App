@@ -1,12 +1,14 @@
-import { PlusOutlined } from "@ant-design/icons";
+import { PlusOutlined,EditOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import { Button, Form, Input, message, Modal } from "antd";
 import "./style.css";
 import axios from "axios";
 import { useQueryClient } from "react-query";
+import Edit from "./Edit";
 
 const Categories = ({ data}) => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [form] = Form.useForm();
 
   const queryClient = useQueryClient()
@@ -39,6 +41,12 @@ const Categories = ({ data}) => {
       >
         <PlusOutlined className="md:text-2xl" />
       </li>
+      <li
+        className="category-item !bg-orange-800 hover:opacity-90"
+        onClick={() => setIsEditModalOpen(true)}
+      >
+        <EditOutlined className="md:text-2xl" />
+      </li>
       <Modal
         title="Yeni Kategori Ekle"
         open={isAddModalOpen}
@@ -65,6 +73,11 @@ const Categories = ({ data}) => {
           </Form.Item>
         </Form>
       </Modal>
+      <Edit
+        isEditModalOpen={isEditModalOpen}
+        setIsEditModalOpen={setIsEditModalOpen}
+        categories={data}
+      />
     </ul>
   );
 };

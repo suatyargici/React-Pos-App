@@ -16,6 +16,7 @@ const HomePage = () => {
 }
 
   const { data } = useQuery("category",getCategories);
+  
   console.log('data :>> ', data);
   return (
     <>
