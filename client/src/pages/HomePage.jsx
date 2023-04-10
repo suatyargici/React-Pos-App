@@ -26,7 +26,12 @@ const HomePage = () => {
           <Categories data={data?.data} />
         </div>
         <div className="products max-h-[calc(100vh_-_112px)] flex-[8] overflow-y-auto pb-10">
-          <Products />
+          <Products 
+          categories={data?.data.map((item) => {
+            return { ...item, value: item.title };
+          })
+        }
+          />
         </div>
         <div className="cart-wrapper min-w-[300px] border md:-mr-[24px] md:-mt-[24px]">
           <CartTotals />
