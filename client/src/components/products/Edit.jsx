@@ -1,7 +1,7 @@
 import { Button, Form, Input, message, Modal, Select, Table } from "antd";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useQuery, useQueryClient } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 
 const Edit = ({}) => {
   const [products, setProducts] = useState([]);
@@ -17,19 +17,18 @@ const Edit = ({}) => {
   };
 
   const { data } = useQuery("category", getCategories);
-  useEffect(() => {
-    const getProducts = async () => {
-      try {
-        const res = await fetch("http://localhost:5000/api/products/get-all");
-        const data = await res.json();
-        setProducts(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
 
-    getProducts();
-  }, []);
+
+  const getProducts = () => {
+    return axios.get(`http://localhost:5000/api/products/get-all`);
+  };
+
+  const { data:basket } = useQuery("product", getProducts);
+
+  console.log('basket :>> ', basket);
+
+
+
 
   const onFinish = (values) => {
     console.log(values);
@@ -52,25 +51,23 @@ const Edit = ({}) => {
     }
   };
 
-  const deleteCategory = (id) => {
-    if (window.confirm("Emin misiniz?")) {
-      try {
-        axios.delete(`http://localhost:5000/api/products/delete-product`, 
+
+
+  const deleteCategory = useMutation({
+    mutationKey: "category",
+    mutationFn: async (id) => {
+      await axios.delete(
+        `http://localhost:5000/api/products/delete-product`,
         {
           data: {
             _id: id,
           },
         }
-        );
-        queryClient.invalidateQueries("product");
-
-        message.success("Ürün başarıyla silindi.");
-      } catch (error) {
-        message.error("Bir şeyler yanlış gitti.");
-        console.log(error);
-      }
-    }
-  };
+      );
+      message.success("Kategori başarıyla silindi.");
+      queryClient.invalidateQueries("product");
+    },
+  });
 
   const columns = [
     {
@@ -122,7 +119,7 @@ const Edit = ({}) => {
             <Button
               type="link"
               danger
-              onClick={() => deleteCategory(record._id)}
+              onClick={() => deleteCategory.mutate(record._id)}
             >
               Sil
             </Button>
@@ -137,7 +134,7 @@ const Edit = ({}) => {
       <Form onFinish={onFinish}>
         <Table
           bordered
-          dataSource={products}
+          dataSource={basket?.data}
           columns={columns}
           rowKey={"_id"}
           scroll={{
