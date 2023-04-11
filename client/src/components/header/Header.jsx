@@ -15,6 +15,7 @@ import {
 } from "@ant-design/icons";
 import Switch from "../Switch";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 const Header = () => {
   const { t } = useTranslation();
   const [status, setStatus] = useState(false);
@@ -50,6 +51,9 @@ const Header = () => {
     }
   }, []);
 
+  const cart = useSelector((state) => state.cart);
+
+  console.log(cart.cartItems.length);
 
   return (
     <div className="mb-6 border-b">
@@ -95,7 +99,7 @@ const Header = () => {
             <HomeOutlined className="text-xl md:text-2xl" />
             <span className="text-[10px] md:text-xs">{t("home-page")}</span>
           </Link>
-          <Badge count={5} offset={[0, 6]} className="hidden md:flex">
+          <Badge count={cart?.cartItems?.length} offset={[0, 6]} className="hidden md:flex">
             <Link
               to={"/cart"}
               className="menu-link flex flex-col transition-all hover:text-[#40a9ff]"
