@@ -47,7 +47,16 @@ const CartTotals = () => {
                 size="small"
                 className="flex w-full items-center justify-center !rounded-full"
                 icon={<MinusCircleOutlined />}
-                onClick={() => dispatch(decrease(item))}
+                onClick={() => {
+                  if (item.quantity === 1) {
+                    if (window.confirm("Ürün Silinsin Mi?")) {
+                      dispatch(decrease(item));
+                    }
+                  }
+                  if (item.quantity > 1) {
+                    dispatch(decrease(item));
+                  }
+                }}
               />
             </div>
           </li>
