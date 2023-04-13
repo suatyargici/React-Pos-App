@@ -1,4 +1,4 @@
-import { Button } from "antd";
+import { Button, message } from "antd";
 import {
   ClearOutlined,
   PlusCircleOutlined,
@@ -6,14 +6,17 @@ import {
 } from "@ant-design/icons";
 import { useSelector, useDispatch } from "react-redux";
 import { decrease, deleteCart, increase } from "../../redux/cartSlice";
+import { useTranslation } from "react-i18next";
 
 const CartTotals = () => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+  const { t } = useTranslation();
+
   return (
     <div className="cart flex h-full max-h-[calc(100vh_-_90px)] flex-col">
       <h2 className="bg-blue-600 py-4 text-center font-bold tracking-wide text-white">
-        Sepetteki Ürünler
+  {t("in-basket")}
       </h2>
 
       <ul className="cart-items flex flex-col gap-y-3 overflow-y-auto px-2 py-2">
@@ -24,7 +27,13 @@ const CartTotals = () => {
                 src={item.img}
                 alt=""
                 className="h-16 w-16 cursor-pointer object-cover"
-                onClick={() => dispatch(deleteCart(item))}
+                onClick={() =>{
+                  if (window.confirm("Ürün Silinsin Mi?")) {
+                    dispatch(deleteCart(item))
+                    message.success("Ürün başarı ile silindi")
+                  }
+                  
+                }}
               />
               <div className="ml-2 flex flex-col">
                 <b>{item.title}</b>
@@ -60,13 +69,13 @@ const CartTotals = () => {
               />
             </div>
           </li>
-        )): <p>Sepet te ürün bulunmamaktadır.</p>}
+        )): <p>{t("no-product")}.</p>}
       </ul>
 
       <div className="cart-totals mt-auto">
         <div className="border-t border-b">
           <div className="flex justify-between p-2">
-            <b>Ara Toplam</b>
+            <b>{t("subtotal")}</b>
             <span>{cart.total > 0 ? cart.total.toFixed(2) : 0}₺</span>
           </div>
           <div className="flex justify-between p-2">
@@ -81,7 +90,7 @@ const CartTotals = () => {
         </div>
         <div className="mt-4 border-b">
           <div className="flex justify-between p-2">
-            <b className="text-xl text-green-500">Genel Toplam</b>
+            <b className="text-xl text-green-500">{t("grand-total")}</b>
             <span className="text-xl">
               {cart.total + (cart.total * cart.tax) / 100 > 0
                 ? (cart.total + (cart.total * cart.tax) / 100).toFixed(2)
@@ -91,17 +100,21 @@ const CartTotals = () => {
           </div>
         </div>
         <div className="py-4 px-2">
-          <Button type="primary" size="large" className="w-full">
-            Sipariş Oluştur
+        <Button
+            type="primary"
+            size="large"
+            className="w-full"
+            disabled={cart.cartItems.length === 0}
+          >
+          {t("creat-order")}
           </Button>
           <Button
             type="primary"
             size="large"
-            className="mt-2 flex w-full items-center justify-center"
-            icon={<ClearOutlined />}
-            danger
+            className="w-full"
+            disabled={cart.cartItems.length === 0}
           >
-            Temizle
+          {t("clear")}
           </Button>
         </div>
       </div>

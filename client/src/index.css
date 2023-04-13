@@ -2,35 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Electrolize&family=Lato:wght@400;700&family=Noto+Sans+Chakma&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Electrolize&family=Lato:wght@400;700&family=Noto+Sans+Chakma&display=swap");
 
-body{
-    margin:0;
-    font-family: 'Electrolize', sans-serif;
-    @apply bg-gray-50;
+body {
+  margin: 0;
+  font-family: "Electrolize", sans-serif;
+  @apply bg-gray-50;
 }
 
-.ant-btn-primary{
-    background-color: #1677ff;
-  }
+.ant-btn-primary {
+  background-color: #1677ff;
+}
 
+.menu-link .anticon {
+  display: flex;
+  justify-content: center;
+}
 
 .categories::-webkit-scrollbar {
-    display: none;
-  }
-  .products::-webkit-scrollbar {
-    display: none;
-  }
+  display: none;
+}
+.products::-webkit-scrollbar {
+  display: none;
+}
 
-  .dark{
-    background-color: #1a202c;
-    color: #fff;
-  }
+.dark {
+  background-color: #1a202c;
+  color: #fff;
+}
 
-  .dark-mode{
-    width: 45px;
-    height: 45px;
-    flex-shrink: 0;
-    border-radius: 50%;
-    background-color:rgba(0,0,0,.05);
-  }
+.dark-mode {
+  width: 45px;
+  height: 45px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.05);
+}

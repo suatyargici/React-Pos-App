@@ -1,13 +1,19 @@
 {
-    "welcome":"welcome",
-    "home-page":"Home Page",
-    "basket":"basket",
-    "bills":"Bills",
-    "customers":"Customers",
-    "statistics":"Statistics",
-    "logout":"Logout",
-    "name":"Name",
-    "total":"Total",
-    "my-customers":"My customers"
+  "welcome": "WELCOME",
+  "home-page": "Home Page",
+  "basket": "basket",
+  "bills": "Bills",
+  "customers": "Customers",
+  "statistics": "Statistics",
+  "logout": "Logout",
+  "name": "Name",
+  "total": "Total",
+  "my-customers": "My customers",
+  "in-basket": "The product in basket",
+  "subtotal": "Subtotal",
+  "grand-total":"Grand Total",
+  "creat-order":"Creat Order",
+  "clear":"Clear",
+  "no-product":"There is no product in the cart"
 
 }

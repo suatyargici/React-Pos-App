@@ -8,5 +8,11 @@
     "logout":"Çıkış",
     "name":"İsim",
     "total":"Toplam",
-    "my-customers":"Müşterilerim"
+    "my-customers":"Müşterilerim",
+    "in-basket":"Sepetteki ürünler",
+    "subtotal":"Ara Toplam",
+    "grand-total":"Genel Toplam",
+    "creat-order":"Sipariş Oluştur",
+    "clear":"Temizle",
+    "no-product":"Sepetiniz de ürün bulunmamaktadır"
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../../redux/cartSlice";
+import { message } from "antd";
 
 const ProductItem = ({item}) => {
 
@@ -8,6 +9,7 @@ const ProductItem = ({item}) => {
 
   const handleClick = () => {
     dispatch(addProduct({ ...item, quantity: 1 }));
+    message.success("Ürün sepete başarı ile eklendi")
   };
   return (
     <div className="product-item border hover:shadow-lg cursor-pointer transition-all select-none" onClick={handleClick}>

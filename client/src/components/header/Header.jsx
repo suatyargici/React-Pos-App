@@ -99,7 +99,7 @@ const Header = () => {
             <HomeOutlined className="text-xl md:text-2xl" />
             <span className="text-[10px] md:text-xs">{t("home-page")}</span>
           </Link>
-          <Badge count={cart?.cartItems?.length} offset={[0, 6]} className="hidden md:flex">
+          <Badge count={cart?.cartItems?.length} offset={[0, 0]} className="hidden md:flex">
             <Link
               to={"/cart"}
               className="menu-link flex flex-col transition-all hover:text-[#40a9ff]"
@@ -137,7 +137,7 @@ const Header = () => {
             <span className="text-[10px] md:text-xs">{t("logout")}</span>
           </Link>
         </div>
-        <Badge count={5} offset={[0, 6]} className="flex md:hidden">
+        <Badge count={5} offset={[0, 0]} className="flex md:hidden">
           <Link
             to={"/"}
             className="menu-link flex flex-col transition-all hover:text-[#40a9ff]"
