@@ -7,11 +7,14 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { decrease, deleteCart, increase } from "../../redux/cartSlice";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+
 
 const CartTotals = () => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   return (
     <div className="cart flex h-full max-h-[calc(100vh_-_90px)] flex-col">
@@ -105,6 +108,7 @@ const CartTotals = () => {
             size="large"
             className="w-full"
             disabled={cart.cartItems.length === 0}
+            onClick={()=> navigate("/cart")}
           >
           {t("creat-order")}
           </Button>

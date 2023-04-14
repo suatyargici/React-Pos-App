@@ -92,40 +92,28 @@ const Header = () => {
           />
         </div>
         <div className="menu-links fixed bottom-0 left-0 z-50 flex w-screen items-center justify-between gap-7 border-t bg-white px-4 py-1 md:static md:w-auto md:border-t-0 md:bg-transparent md:px-0">
-          <Link
-            to={"/"}
-            className="menu-link flex flex-col transition-all hover:text-[#40a9ff]"
-          >
+        <Link to={"/"} className="menu-link">
             <HomeOutlined className="text-xl md:text-2xl" />
             <span className="text-[10px] md:text-xs">{t("home-page")}</span>
           </Link>
           <Badge count={cart?.cartItems?.length} offset={[0, 0]} className="hidden md:flex">
-            <Link
-              to={"/cart"}
-              className="menu-link flex flex-col transition-all hover:text-[#40a9ff]"
-            >
+          <Link to={"/cart"} className="menu-link">
               <ShoppingCartOutlined className="text-xl md:text-2xl" />
               <span className="text-[10px] md:text-xs">{t("basket")}</span>
             </Link>
           </Badge>
-          <Link
-            to={"/bills"}
-            className="menu-link flex flex-col transition-all hover:text-[#40a9ff]"
-          >
+          <Link to={"/bills"} className="menu-link">
             <CopyOutlined className="text-xl md:text-2xl" />
             <span className="text-[10px] md:text-xs">{t("bills")}</span>
           </Link>
           <Link
             to={"/customers"}
-            className="menu-link flex flex-col transition-all hover:text-[#40a9ff]"
+            className="menu-link "
           >
             <UserOutlined className="text-xl md:text-2xl" />
             <span className="text-[10px] md:text-xs">{t("customers")}</span>
           </Link>
-          <Link
-            to={"/statistic"}
-            className="menu-link flex flex-col transition-all hover:text-[#40a9ff]"
-          >
+          <Link to={"/statistic"} className="menu-link">
             <BarChartOutlined className="text-xl md:text-2xl" />
             <span className="text-[10px] md:text-xs">{t("statistics")}</span>
           </Link>
