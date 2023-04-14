@@ -6,6 +6,7 @@ import { useQuery } from "react-query";
 import axios from "axios";
 const BillPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [customer,setCustomer]= useState()
 
   const getBills = () => {
     return axios.get("http://localhost:5000/api/bills/get-all");
@@ -50,12 +51,15 @@ const BillPage = () => {
       title: "Actions",
       dataIndex: "action",
       key: "action",
-      render: (text) => {
+      render: (_,record) => {
         return (
           <Button
             type="link"
             className="pl-0"
-            onClick={() => setIsModalOpen(true)}
+            onClick={() => {
+              setIsModalOpen(true);
+              setCustomer(record)
+            }}
           >
             Yazdır
           </Button>
@@ -74,15 +78,14 @@ const BillPage = () => {
           columns={columns}
           bordered
           rowKey={"_id"}
-
           pagination={false}
           scroll={{
-            x: 1300,
+            x: 1000,
             y: 240,
           }}
         />
       </div>
-      <PrintBill isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+      <PrintBill isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} customer={customer}/>
     </>
   );
 };

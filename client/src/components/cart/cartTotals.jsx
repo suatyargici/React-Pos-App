@@ -72,7 +72,7 @@ const CartTotals = () => {
               />
             </div>
           </li>
-        )): <p>{t("no-product")}.</p>}
+        )).reverse(): <p>{t("no-product")}.</p>}
       </ul>
 
       <div className="cart-totals mt-auto">

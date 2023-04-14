@@ -1,6 +1,6 @@
 import { Button, Modal } from "antd";
 
-const PrintBill = ({ isModalOpen, setIsModalOpen }) => {
+const PrintBill = ({ isModalOpen, setIsModalOpen,customer }) => {
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
   };
@@ -38,13 +38,13 @@ const PrintBill = ({ isModalOpen, setIsModalOpen }) => {
               <div className="text-md text-slate-500">
                 <div>
                   <p className="font-bold text-slate-700">Fatura numarası:</p>
-                  <p>00041</p>
+                  <p>000{Math.floor(Math.random() * 100)}</p>
                 </div>
                 <div>
                   <p className="font-bold text-slate-700 mt-2">
                     Veriliş Tarihi:
                   </p>
-                  <p>2022-11-21</p>
+                  <p>{customer?.createdAt.substring(0, 10)}</p>
                 </div>
               </div>
               <div className="text-md text-slate-500">
@@ -97,27 +97,42 @@ const PrintBill = ({ isModalOpen, setIsModalOpen }) => {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-b border-slate-200">
-                  <td className="py-4 ">
-                    <img
-                      src="https://i.lezzet.com.tr/images-xxlarge-secondary/elma-nasil-yenir-221135ca-f383-474c-a4f5-ad02a45db978.jpg"
-                      alt=""
-                      className="w-12 h-12 object-cover"
-                    />
-                  </td>
-                  <td className="py-4">
-                    <span className="font-medium">Şalgam</span>
-                  </td>
-                  <td className="py-4 text-center">
-                    <span>5₺</span>
-                  </td>
-                  <td className="py-4 text-center">
-                    <span>1</span>
-                  </td>
-                  <td className="py-4 text-end">
-                    <span>5.00₺</span>
-                  </td>
-                </tr>
+              {customer?.cartItems.map((item) => (
+                    <tr className="border-b border-slate-200">
+                      <td className="py-4 sm:table-cell hidden">
+                        <img
+                          src={item.img}
+                          alt=""
+                          className="w-12 h-12 object-cover"
+                        />
+                      </td>
+                      <td className="py-4 sm:table-cell hidden">
+                        <div className="flex flex-col">
+                          <span className="font-medium">{item.title}</span>
+                          <span className="sm:hidden inline-block text-xs">
+                            Birim Fiyatı {item.price}₺
+                          </span>
+                        </div>
+                      </td>
+                      <td className="py-4 sm:hidden" colSpan={4}>
+                        <div className="flex flex-col">
+                          <span className="font-medium">{item.title}</span>
+                          <span className="sm:hidden inline-block text-xs">
+                            Birim Fiyatı {item.price}₺
+                          </span>
+                        </div>
+                      </td>
+                      <td className="py-4 text-center sm:table-cell hidden">
+                        <span>{item.price.toFixed(2)}₺</span>
+                      </td>
+                      <td className="py-4 sm:text-center text-right sm:table-cell hidden">
+                        <span>{item.quantity}</span>
+                      </td>
+                      <td className="py-4 text-end">
+                        <span>{(item.price * item.quantity).toFixed(2)}₺</span>
+                      </td>
+                    </tr>
+                  ))}
               </tbody>
               <tfoot>
                 <tr>
