@@ -1,6 +1,13 @@
 import { Button, Modal } from "antd";
-
+import { useRef } from "react";
+import { useReactToPrint } from "react-to-print";
 const PrintBill = ({ isModalOpen, setIsModalOpen,customer }) => {
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
+
+
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
   };
@@ -13,7 +20,7 @@ const PrintBill = ({ isModalOpen, setIsModalOpen,customer }) => {
     onCancel={() => setIsModalOpen(false)}
     width={800}
   >
-    <section className="py-20 bg-black">
+    <section className="py-20 bg-black" ref={componentRef}>
       <div className="max-w-5xl mx-auto bg-white px-6">
         <article className="overflow-hidden">
           <div className="logo my-6">
@@ -183,7 +190,7 @@ const PrintBill = ({ isModalOpen, setIsModalOpen,customer }) => {
       </div>
     </section>
     <div className="flex justify-end mt-4">
-      <Button type="primary" size="large">Yazdır</Button>
+      <Button type="primary" size="large" onClick={handlePrint}>Yazdır</Button>
     </div>
   </Modal>
   );
