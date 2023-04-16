@@ -1,9 +1,9 @@
-import { Badge, Input } from "antd";
+import { Badge, Input, message } from "antd";
 import { useTranslation, initReactI18next } from "react-i18next";
 import { CiLight } from "react-icons/ci";
 import { MdOutlineDarkMode } from "react-icons/md";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   SearchOutlined,
   HomeOutlined,
@@ -48,7 +48,14 @@ const Header = () => {
 
   const cart = useSelector((state) => state.cart);
 
-  console.log(cart.cartItems.length);
+  const navigate = useNavigate();
+  const logOut = () => {
+    if (window.confirm("Çıkış yapmak istediğinize emin misiniz?")) {
+      localStorage.removeItem("posUser");
+      navigate("/login");
+      message.success("Çıkış işlemi başarılı.");
+    }
+  };
 
   return (
     <div className="mb-6 border-b">
@@ -99,8 +106,8 @@ const Header = () => {
             <SlBasket className="text-xl md:text-2xl" />
             <span className="text-[10px] md:text-xs">{t("basket")}</span>
             {cart.cartItems.length > 0 && (
-              <div className="absolute bottom-[34px] text-sm left-4 h-5 w-5 rounded-full bg-red-600 text-white flex justify-center items-center">
-               <span> {cart.cartItems.length}</span>
+              <div className="absolute bottom-[34px] left-4 flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-sm text-white">
+                <span> {cart.cartItems.length}</span>
               </div>
             )}
           </Link>
@@ -117,13 +124,13 @@ const Header = () => {
             <BarChartOutlined className="text-xl md:text-2xl" />
             <span className="text-[10px] md:text-xs">{t("statistics")}</span>
           </Link>
-          <Link
-            to={"/"}
-            className="menu-link flex flex-col transition-all hover:text-[#40a9ff]"
+          <div
+            onClick={logOut}
+            className="menu-link flex flex-col transition-all cursor-pointer hover:text-[#40a9ff]"
           >
             <LogoutOutlined className="text-xl md:text-2xl" />
             <span className="text-[10px] md:text-xs">{t("logout")}</span>
-          </Link>
+          </div>
         </div>
         <Badge count={5} offset={[0, 0]} className="flex md:hidden">
           <Link

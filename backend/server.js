@@ -24,8 +24,8 @@ const connect = async () => {
     throw error;
   }
 };
-app.use(logger("dev"));
 
+app.use(logger("dev"));
 app.use(express.json());
 app.use(cors());
 

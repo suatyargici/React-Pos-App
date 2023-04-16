@@ -9,21 +9,37 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
 
   const onFinish = async (values) => {
+    console.log('values :>> ', values);
     setLoading(true);
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/auth/register",
-        values
-      );
+      const res = await axios.post(`http://localhost:5000/api/auth/login`, {
+        email: values.email,
+        password: values.password,
+      });
+
+   
 
       if (res.status === 200) {
-        message.success("Kayıt işlemi başarılı.");
-        navigate("/login");
-        setLoading(false);
+        
+        localStorage.setItem(
+          "posUser",
+          JSON.stringify({
+            username: values.username,
+            email: values.email,
+          })
+        );
+        message.success("Giriş işlemi başarılı.");
+        navigate("/");
+      } else if (res.status === 404) {
+        message.error("Kullanıcı bulunamadı!");
+      } else if (res.status === 403) {
+        message.error("Şifre yanlış!");
       }
+      setLoading(false);
     } catch (error) {
       message.error("Bir şeyler yanlış gitti.");
       console.log(error);
+      setLoading(false);
     }
   };
   return (
@@ -31,7 +47,13 @@ const Login = () => {
       <div className="flex h-full justify-between">
         <div className="relative flex h-full w-full flex-col justify-center px-10 xl:px-20">
           <h1 className="mb-2 text-center text-5xl font-bold">LOGO</h1>
-          <Form layout="vertical" onFinish={onFinish}>
+          <Form
+            layout="vertical"
+            onFinish={onFinish}
+            initialValues={{
+              remember: false,
+            }}
+          >
             <Form.Item
               label="E-mail"
               name={"email"}
