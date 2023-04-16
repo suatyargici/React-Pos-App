@@ -13,31 +13,26 @@ import {
   BarChartOutlined,
   LogoutOutlined,
 } from "@ant-design/icons";
+import { SlBasket } from "react-icons/sl";
 import Switch from "../Switch";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 const Header = () => {
   const { t } = useTranslation();
   const [status, setStatus] = useState(false);
-  
 
-  var setTheme = document.body
+  var setTheme = document.body;
   useEffect(() => {
     if (status) {
       setTheme.classList.add("dark");
-    localStorage.setItem(
-      "PageTheme",
-      JSON.stringify("DARK")
-
-    )
-
+      localStorage.setItem("PageTheme", JSON.stringify("DARK"));
     } else {
       setTheme.classList.remove("dark");
       localStorage.setItem(
         "PageTheme",
 
         JSON.stringify("LIGHT")
-      )
+      );
     }
   }, [status]);
 
@@ -60,11 +55,14 @@ const Header = () => {
       <header className="flex items-center justify-between gap-10 py-4 px-6">
         <div className="logo">
           <Link to="/">
-            <h2 className="text-2xl font-bold md:text-4xl">LOGO</h2>
+            <h2 className="text-2xl font-bold md:text-4xl">YARGISOFT</h2>
           </Link>
         </div>
         <Switch />
-        <div onClick={()=>setStatus(!status)} className="dark-mode flex justify-center items-center hover:dark-mode">
+        <div
+          onClick={() => setStatus(!status)}
+          className="dark-mode hover:dark-mode flex items-center justify-center"
+        >
           {status ? (
             <CiLight
               size={30}
@@ -92,24 +90,26 @@ const Header = () => {
           />
         </div>
         <div className="menu-links fixed bottom-0 left-0 z-50 flex w-screen items-center justify-between gap-7 border-t bg-white px-4 py-1 md:static md:w-auto md:border-t-0 md:bg-transparent md:px-0">
-        <Link to={"/"} className="menu-link">
+          <Link to={"/"} className="menu-link">
             <HomeOutlined className="text-xl md:text-2xl" />
             <span className="text-[10px] md:text-xs">{t("home-page")}</span>
           </Link>
-          <Badge count={cart?.cartItems?.length} offset={[0, 0]} className="hidden md:flex">
-          <Link to={"/cart"} className="menu-link">
-              <ShoppingCartOutlined className="text-xl md:text-2xl" />
-              <span className="text-[10px] md:text-xs">{t("basket")}</span>
-            </Link>
-          </Badge>
+
+          <Link to={"/cart"} className="menu-link relative">
+            <SlBasket className="text-xl md:text-2xl" />
+            <span className="text-[10px] md:text-xs">{t("basket")}</span>
+            {cart.cartItems.length > 0 && (
+              <div className="absolute bottom-[34px] text-sm left-4 h-5 w-5 rounded-full bg-red-600 text-white flex justify-center items-center">
+               <span> {cart.cartItems.length}</span>
+              </div>
+            )}
+          </Link>
+
           <Link to={"/bills"} className="menu-link">
             <CopyOutlined className="text-xl md:text-2xl" />
             <span className="text-[10px] md:text-xs">{t("bills")}</span>
           </Link>
-          <Link
-            to={"/customers"}
-            className="menu-link "
-          >
+          <Link to={"/customers"} className="menu-link ">
             <UserOutlined className="text-xl md:text-2xl" />
             <span className="text-[10px] md:text-xs">{t("customers")}</span>
           </Link>

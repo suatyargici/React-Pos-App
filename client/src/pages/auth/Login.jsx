@@ -1,14 +1,37 @@
-import { Button, Carousel, Checkbox, Form, Input } from "antd";
-import { Link } from "react-router-dom";
+import { Button, Carousel, Checkbox, Form, Input, message } from "antd";
+import { Link, useNavigate } from "react-router-dom";
 import AuthCarousel from "../../components/auth/AuthCarousel";
+import { useState } from "react";
+import axios from "axios";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+
+  const onFinish = async (values) => {
+    setLoading(true);
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/api/auth/register",
+        values
+      );
+
+      if (res.status === 200) {
+        message.success("Kayıt işlemi başarılı.");
+        navigate("/login");
+        setLoading(false);
+      }
+    } catch (error) {
+      message.error("Bir şeyler yanlış gitti.");
+      console.log(error);
+    }
+  };
   return (
     <div className="h-screen">
-      <div className="flex justify-between h-full">
-        <div className="xl:px-20 px-10 w-full flex flex-col h-full justify-center relative">
-          <h1 className="text-center text-5xl font-bold mb-2">LOGO</h1>
-          <Form layout="vertical">
+      <div className="flex h-full justify-between">
+        <div className="relative flex h-full w-full flex-col justify-center px-10 xl:px-20">
+          <h1 className="mb-2 text-center text-5xl font-bold">LOGO</h1>
+          <Form layout="vertical" onFinish={onFinish}>
             <Form.Item
               label="E-mail"
               name={"email"}
@@ -33,34 +56,28 @@ const Login = () => {
             >
               <Input.Password />
             </Form.Item>
-            <Form.Item name={"remember"} valuePropName="checked">
-              <div className="flex justify-between items-center">
-                <Checkbox>Remember me</Checkbox>
-                <Link>Forgot Password?</Link>
-              </div>
+            <Form.Item  name={"remember"} valuePropName="checked">
+              <Checkbox>Beni hatırla</Checkbox>
             </Form.Item>
+
             <Form.Item>
               <Button
                 type="primary"
                 htmlType="submit"
                 className="w-full"
                 size="large"
+                loading={loading}
               >
-                Giriş Yap
+           Giriş Yap
               </Button>
             </Form.Item>
           </Form>
-          <div className="flex justify-center absolute left-0 bottom-10 w-full">
-            Henüz bir hesabınız yok mu?&nbsp;
-            <Link to="/register" className="text-blue-600">
-              Şimdi kaydol
-            </Link>
-          </div>
+        
         </div>
-        <div className="xl:w-4/6 lg:w-3/5 md:w-1/2 md:flex hidden bg-[#6c63ff] h-full">
-          <div className="w-full h-full flex items-center">
+        <div className="hidden h-full bg-[#6c63ff] md:flex md:w-1/2 lg:w-3/5 xl:w-4/6">
+          <div className="flex h-full w-full items-center">
             <div className="w-full">
-              <Carousel className="!h-full px-6" autoplay>
+              <Carousel className="!h-full px-6">
                 <AuthCarousel
                   img="/images/responsive.svg"
                   title="Responsive"

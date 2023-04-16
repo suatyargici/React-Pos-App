@@ -102,7 +102,7 @@ const CartTotals = () => {
             </span>
           </div>
         </div>
-        <div className="py-4 px-2">
+        <div className="py-4 px-2 flex flex-col gap-y-2">
         <Button
             type="primary"
             size="large"

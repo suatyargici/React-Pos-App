@@ -3,9 +3,11 @@ import Header from "../components/header/Header.jsx";
 import StatisticCard from "../components/statistics/StatisticsCard.jsx";
 import { Area, Pie } from "@ant-design/plots";
 import { useQuery } from "react-query";
+import { useTranslation } from "react-i18next";
 
 const StatisticPage = () => {
 
+  const { t } = useTranslation();
 
   const getProducts = () => {
     return axios.get(`http://localhost:5000/api/products/get-all`);
@@ -72,7 +74,7 @@ const StatisticPage = () => {
     return `${amount.toFixed(2)}₺`;
   };
   return (
-    <>
+    <div className="md:px-5 px-2">
       <Header />
       <div className="statistic-cards grid xl:grid-cols-4 md:grid-cols-2 my-10 md:gap-10 gap-4">
             <StatisticCard
@@ -98,22 +100,22 @@ const StatisticPage = () => {
           </div>
       <div className="px-6 md:pb-0 pb-20">
         <h1 className="text-4xl font-bold text-center mb-4">İstatistiklerim</h1>
-        <div className="statistic-section">
-          <h2 className="text-lg">
-            Hoş geldin{" "}
+        <div className="statistic-section py-10">
+          <h2 className="text-lg flex gap-x-2 py-2">
+            {t("welcome")}
             <span className="text-green-700 font-bold text-xl">admin</span>.
           </h2>
           <div className="flex justify-between gap-10 lg:flex-row flex-col items-center">
-          <div className="lg:w-1/2 lg:h-full h-72">
+          <div className="lg:w-1/2 w-full lg:h-full h-72 md:px-3 px-1">
               <Area {...config} />
             </div>
-            <div className="lg:w-1/2 lg:h-full h-72">
+            <div className="lg:w-1/2 w-ful  lg:h-full h-72 md:px-3 px-1">
               <Pie {...config2} />
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

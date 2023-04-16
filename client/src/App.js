@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./pages/auth/Login.jsx";
 import Register from "./pages/auth/Register.jsx";
 import BillPage from "./pages/BillPage.jsx";
 import CartPage from "./pages/CartPage.jsx";
@@ -8,6 +7,7 @@ import CustomerPage from "./pages/CustomerPage.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import StatisticPage from "./pages/StatisticPage.jsx";
 import ProductPage from "./pages/ProductPage.jsx";
+import Login from "./pages/auth/Login.jsx";
 
 const App = () => {
   return (
