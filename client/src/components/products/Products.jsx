@@ -6,7 +6,7 @@ import Add from "./Add";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Products = ({ categories }) => {
+const Products = ({ categories ,filtered}) => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const navigate = useNavigate();
   const getProducts = () => {
@@ -19,7 +19,7 @@ const Products = ({ categories }) => {
 
   return (
     <div className="products-wrapper grid grid-cols-card gap-4">
-      {data?.data.map((item) => (
+      {filtered?.map((item) => (
         <ProductItem key={item._id} item={item} />
       ))}
       <div
