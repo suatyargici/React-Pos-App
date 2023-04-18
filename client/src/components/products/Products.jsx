@@ -6,7 +6,7 @@ import Add from "./Add";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Products = ({ categories ,filtered}) => {
+const Products = ({ categories, filtered, search }) => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const navigate = useNavigate();
   const getProducts = () => {
@@ -19,16 +19,17 @@ const Products = ({ categories ,filtered}) => {
 
   return (
     <div className="products-wrapper grid grid-cols-card gap-4">
-      {filtered?.map((item) => (
-        <ProductItem key={item._id} item={item} />
-      ))}
+      {filtered
+        ?.filter((item) => item.title.toLowerCase().includes(search))?.map((item) => (
+          <ProductItem key={item._id} item={item} />
+        ))}
       <div
-        className="min-h-[180px] product-item flex cursor-pointer select-none items-center justify-center border bg-purple-800 transition-all hover:opacity-90 hover:shadow-lg"
+        className="product-item flex min-h-[180px] cursor-pointer select-none items-center justify-center border bg-purple-800 transition-all hover:opacity-90 hover:shadow-lg"
         onClick={() => setIsAddModalOpen(true)}
       >
         <PlusOutlined className=" text-white md:text-2xl" />
       </div>
-      <div className="min-h-[180px] product-item flex cursor-pointer select-none items-center justify-center border bg-orange-800 transition-all hover:opacity-90 hover:shadow-lg">
+      <div className="product-item flex min-h-[180px] cursor-pointer select-none items-center justify-center border bg-orange-800 transition-all hover:opacity-90 hover:shadow-lg">
         <EditOutlined
           className=" text-white md:text-2xl"
           onClick={() => navigate("/products")}

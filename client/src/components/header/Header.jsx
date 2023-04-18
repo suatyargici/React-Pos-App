@@ -17,7 +17,7 @@ import { SlBasket } from "react-icons/sl";
 import Switch from "../Switch";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-const Header = () => {
+const Header = ({ setSearch }) => {
   const { t } = useTranslation();
   const [status, setStatus] = useState(false);
 
@@ -94,6 +94,7 @@ const Header = () => {
             placeholder="Ürün Ara..."
             prefix={<SearchOutlined />}
             className="max-w-[800px] rounded-full"
+            onChange={(e) => setSearch(e.target.value.toLowerCase())}
           />
         </div>
         <div className="menu-links fixed bottom-0 left-0 z-50 flex w-screen items-center justify-between gap-7 border-t bg-white px-4 py-1 md:static md:w-auto md:border-t-0 md:bg-transparent md:px-0">
@@ -126,7 +127,7 @@ const Header = () => {
           </Link>
           <div
             onClick={logOut}
-            className="menu-link flex flex-col transition-all cursor-pointer hover:text-[#40a9ff]"
+            className="menu-link flex cursor-pointer flex-col transition-all hover:text-[#40a9ff]"
           >
             <LogoutOutlined className="text-xl md:text-2xl" />
             <span className="text-[10px] md:text-xs">{t("logout")}</span>
