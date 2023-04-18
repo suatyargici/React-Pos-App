@@ -35,15 +35,18 @@ const Categories = ({ data, setFiltered }) => {
   useEffect(() => {
     if (categoryTitle === "Tümü") {
       setFiltered(product?.data);
-    } else{
+    } else {
       setFiltered(
         product?.data?.filter((item) => item.category === categoryTitle)
       );
     }
   }, [categoryTitle, product, setFiltered]);
-console.log('data :>> ', categoryTitle);
+  console.log("data :>> ", categoryTitle);
   return (
     <ul className="flex w-[200px] gap-4 text-lg md:flex-col">
+      <li className="category-item" onClick={() => setCategoryTitle("Tümü")}>
+        TÜMÜ
+      </li>
       {data?.map((item) => (
         <li
           className="category-item"
