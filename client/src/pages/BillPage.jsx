@@ -1,4 +1,4 @@
-import { Button, Input, Space, Table } from "antd";
+import { Button, Input, Space, Spin, Table } from "antd";
 import { useEffect, useRef, useState } from "react";
 import PrintBill from "../components/bills/PrintBill.jsx";
 import Header from "../components/header/Header.jsx";
@@ -9,7 +9,7 @@ import Highlighter from "react-highlight-words";
 
 const BillPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [customer,setCustomer]= useState()
+  const [customer, setCustomer] = useState();
 
   const getBills = () => {
     return axios.get("http://localhost:5000/api/bills/get-all");
@@ -139,13 +139,13 @@ const BillPage = () => {
       title: "Müşteri Adı",
       dataIndex: "customerName",
       key: "customerName",
-      ...getColumnSearchProps("customerName")
+      ...getColumnSearchProps("customerName"),
     },
     {
       title: "Telefon Numarası",
       dataIndex: "customerPhoneNumber",
       key: "customerPhoneNumber",
-      ...getColumnSearchProps("customerPhoneNumber")
+      ...getColumnSearchProps("customerPhoneNumber"),
     },
     {
       title: "Oluşturma Tarihi",
@@ -159,7 +159,7 @@ const BillPage = () => {
       title: "Ödeme Yöntemi",
       dataIndex: "paymentMode",
       key: "paymentMode",
-      ...getColumnSearchProps("paymentMode")
+      ...getColumnSearchProps("paymentMode"),
     },
     {
       title: "Toplam Fiyat",
@@ -174,14 +174,14 @@ const BillPage = () => {
       title: "Actions",
       dataIndex: "action",
       key: "action",
-      render: (_,record) => {
+      render: (_, record) => {
         return (
           <Button
             type="link"
             className="pl-0"
             onClick={() => {
               setIsModalOpen(true);
-              setCustomer(record)
+              setCustomer(record);
             }}
           >
             Yazdır
@@ -194,21 +194,34 @@ const BillPage = () => {
   return (
     <>
       <Header />
-      <div className="px-6">
-        <h1 className="mb-4 text-center text-4xl font-bold">Faturalar</h1>
-        <Table
-          dataSource={data?.data}
-          columns={columns}
-          bordered
-          rowKey={"_id"}
-          pagination={false}
-          scroll={{
-            x: 1000,
-            y: 240,
-          }}
+      {data ? (
+        <>
+          <div className="px-6">
+            <h1 className="mb-4 text-center text-4xl font-bold">Faturalar</h1>
+            <Table
+              dataSource={data?.data}
+              columns={columns}
+              bordered
+              rowKey={"_id"}
+              pagination={false}
+              scroll={{
+                x: 1000,
+                y: 240,
+              }}
+            />
+          </div>
+          <PrintBill
+            isModalOpen={isModalOpen}
+            setIsModalOpen={setIsModalOpen}
+            customer={customer}
+          />
+        </>
+      ) : (
+        <Spin
+          size="large"
+          className="absolute top-1/2 flex h-screen w-screen justify-center"
         />
-      </div>
-      <PrintBill isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} customer={customer}/>
+      )}
     </>
   );
 };

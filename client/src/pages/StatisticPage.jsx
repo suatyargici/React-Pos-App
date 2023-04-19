@@ -71,7 +71,7 @@ const user = JSON.parse(localStorage.getItem("posUser"))
 
   const totalAmount = () => {
     const amount = data?.data.reduce((total, item) => item.totalAmount + total, 0);
-    return `${amount.toFixed(2)}₺`;
+    return `${amount?.toFixed(2)}₺`;
   };
   return (
     <div className="md:px-5 px-2">
@@ -89,7 +89,7 @@ const user = JSON.parse(localStorage.getItem("posUser"))
             />
             <StatisticCard
               title={"Toplam Satış"}
-              amount={data?.data.length}
+              amount={data?.data?.length}
               img={"images/sale.png"}
             />
             <StatisticCard

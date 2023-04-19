@@ -1,4 +1,4 @@
-import { Button, Input, Space, Table } from "antd";
+import { Button, Input, Space, Spin, Table } from "antd";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation, initReactI18next } from "react-i18next";
 import Header from "../components/header/Header.jsx";
@@ -160,22 +160,34 @@ const CustomerPage = () => {
   return (
     <>
       <Header />
-      <div className="px-6">
-        <h1 className="mb-4 text-center text-4xl font-bold">
-          {t("my-customers")}
-        </h1>
-        <Table
-          dataSource={data?.data}
-          columns={columns}
-          bordered
-          rowKey={"_id"}
-          pagination={false}
-          scroll={{
-            x: 1000,
-            y: 300,
-          }}
+
+      {
+        data ? (
+          <div className="px-6">
+          <h1 className="mb-4 text-center text-4xl font-bold">
+            {t("my-customers")}
+          </h1>
+          <Table
+            dataSource={data?.data}
+            columns={columns}
+            bordered
+            rowKey={"_id"}
+            pagination={false}
+            scroll={{
+              x: 1000,
+              y: 300,
+            }}
+          />
+        </div>
+        ):
+        (
+          <Spin
+          size="large"
+          className="absolute top-1/2 flex h-screen w-screen justify-center"
         />
-      </div>
+        )
+      }
+  
     </>
   );
 };
