@@ -22,7 +22,7 @@ const StatisticPage = () => {
   const { data } = useQuery("bills", getBills);
   console.log('data :>> ', data);
 
-
+const user = JSON.parse(localStorage.getItem("posUser"))
   const config = {
     data:data?.data,
     xField: "customerName",
@@ -103,7 +103,7 @@ const StatisticPage = () => {
         <div className="statistic-section py-10">
           <h2 className="text-lg flex gap-x-2 py-2">
             {t("welcome")}
-            <span className="text-green-700 font-bold text-xl">admin</span>.
+            <span className="text-green-700 font-bold text-xl">{user.email}</span>.
           </h2>
           <div className="flex justify-between gap-10 lg:flex-row flex-col items-center">
           <div className="lg:w-1/2 w-full lg:h-full h-72 md:px-3 px-1">

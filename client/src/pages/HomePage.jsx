@@ -32,7 +32,7 @@ console.log('search :>> ', search);
         </div>
         <div className="products max-h-[calc(100vh_-_112px)] flex-[8] overflow-y-auto pb-10">
           <Products
-            categories={categories?.data.map((item) => {
+            categories={categories?.data?.map((item) => {
               return { ...item, value: item.title };
             })}
             filtered={filtered}
