@@ -173,7 +173,7 @@ const Header = ({ setSearch }) => {
             <span className="text-[10px] md:text-xs">Sepet</span>
           </Link>
         </Badge>
-        <div className="min-[1280px]:hidden">
+        <div className="min-[1280px]:hidden pr-5">
           <Hamburger toggled={close} toggle={() => setClose(!close)} />
         </div>
       </header>
