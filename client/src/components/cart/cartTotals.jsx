@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { decrease, deleteCart, increase } from "../../redux/cartSlice";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { reset } from "../../redux/cartSlice";
 
 
 const CartTotals = () => {
@@ -117,6 +118,7 @@ const CartTotals = () => {
             size="large"
             className="w-full"
             disabled={cart.cartItems.length === 0}
+            onClick={() => dispatch(reset())}
           >
           {t("clear")}
           </Button>

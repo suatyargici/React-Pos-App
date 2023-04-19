@@ -62,7 +62,7 @@ const Header = ({ setSearch }) => {
       <header className=" flex items-center justify-between gap-10 py-4 px-6">
         <div className="logo">
           <Link to="/">
-            <h2 className="text-2xl font-bold md:text-4xl">YARGISOFT</h2>
+            <h2 className="text-xl font-bold md:text-2xl">Anadolu Sofrası</h2>
           </Link>
         </div>
         <Switch status={true} />

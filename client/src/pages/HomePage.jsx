@@ -5,6 +5,7 @@ import Header from "../components/header/Header";
 import Products from "../components/products/Products";
 import axios from "axios";
 import { useQuery, useMutation, useQueryClient } from "react-query";
+import { Helmet } from "react-helmet";
 
 const HomePage = () => {
   const getCategories = () => {
@@ -22,15 +23,18 @@ const HomePage = () => {
   const [products, setProducts] = useState(product?.data);
   const [filtered, setFiltered] = useState();
   const [search, setSearch] = useState("");
-console.log('search :>> ', search);
+  console.log("search :>> ", search);
   return (
     <>
+      <Helmet>
+        <title>Anadolu Sofrası</title>
+      </Helmet>
       <Header setSearch={setSearch} />
-      <div className="home flex h-screen flex-col md:justify-between gap-10  px-6 pb-24 md:flex-row md:pb-0">
+      <div className="home flex h-screen flex-col gap-10 px-6  pb-24 md:flex-row md:justify-between md:pb-0">
         <div className="categories md:max-h-[calc(100vh_-_112px)] md:overflow-auto md:pb-10">
           <Categories data={data?.data} setFiltered={setFiltered} />
         </div>
-        <div className="products md:max-h-[calc(100vh_-_112px)] flex-[8] md:overflow-y-auto pb-10">
+        <div className="products flex-[8] pb-10 md:max-h-[calc(100vh_-_112px)] md:overflow-y-auto">
           <Products
             categories={categories?.data?.map((item) => {
               return { ...item, value: item.title };
