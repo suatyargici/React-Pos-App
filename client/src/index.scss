@@ -49,3 +49,27 @@ body {
   border-radius: 50%;
   background-color: rgba(0, 0, 0, 0.05);
 }
+
+
+.menu-link.active {
+  @apply text-[#40a9ff];
+}
+
+
+.custom-horizontal-scrollbar {
+  &::-webkit-scrollbar {
+    height: 3px;
+
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f5f3fb;
+    border-radius: 38px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #931010;
+    border-radius: 38px;
+  }
+}
+

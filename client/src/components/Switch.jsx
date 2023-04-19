@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types"
 
-const Switch = () => {
+const Switch = ({status}) => {
   const { t, i18n } = useTranslation();
   const [isSelected, setIsSelected] = useState(false);
 
@@ -24,9 +24,12 @@ const Switch = () => {
     <div
       onClick={handleClick}
       className={classNames(
-        "m-10 shrink-0 relative flex h-10 w-20 cursor-pointer items-center rounded-full bg-gray-600 px-2 transition-all duration-700",
+        "m-10  relative flex h-10 w-20 cursor-pointer items-center rounded-full bg-gray-600 px-2 transition-all duration-700",
         {
           "bg-green-500": isSelected,
+        },
+        {
+          " max-[1280px]:hidden":status
         }
       )}
     >

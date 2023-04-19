@@ -43,7 +43,7 @@ const Categories = ({ data, setFiltered }) => {
   }, [categoryTitle, product, setFiltered]);
   console.log("data :>> ", categoryTitle);
   return (
-    <ul className="flex w-[200px] gap-4 text-lg md:flex-col">
+    <ul className="flex overflow-auto custom-horizontal-scrollbar pb-2 w-full md:w-[200px] gap-4 text-lg md:flex-col">
       <li className="category-item" onClick={() => setCategoryTitle("Tümü")}>
         TÜMÜ
       </li>

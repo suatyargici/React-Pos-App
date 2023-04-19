@@ -26,11 +26,11 @@ console.log('search :>> ', search);
   return (
     <>
       <Header setSearch={setSearch} />
-      <div className="home flex h-screen flex-col justify-between gap-10 px-6 pb-24 md:flex-row md:pb-0">
-        <div className="categories max-h-[calc(100vh_-_112px)] overflow-auto md:pb-10">
+      <div className="home flex h-screen flex-col md:justify-between gap-10  px-6 pb-24 md:flex-row md:pb-0">
+        <div className="categories md:max-h-[calc(100vh_-_112px)] md:overflow-auto md:pb-10">
           <Categories data={data?.data} setFiltered={setFiltered} />
         </div>
-        <div className="products max-h-[calc(100vh_-_112px)] flex-[8] overflow-y-auto pb-10">
+        <div className="products md:max-h-[calc(100vh_-_112px)] flex-[8] md:overflow-y-auto pb-10">
           <Products
             categories={categories?.data?.map((item) => {
               return { ...item, value: item.title };
