@@ -5,12 +5,14 @@ import "./style.css";
 import axios from "axios";
 import { useQuery, useQueryClient } from "react-query";
 import Edit from "./Edit";
+import { useTranslation } from "react-i18next";
 
 const Categories = ({ data, setFiltered }) => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [categoryTitle, setCategoryTitle] = useState("Tümü");
   const [form] = Form.useForm();
+  const { t } = useTranslation();
 
   const queryClient = useQueryClient();
   const onFinish = async (values) => {
@@ -69,7 +71,7 @@ const Categories = ({ data, setFiltered }) => {
         <EditOutlined className="md:text-2xl" />
       </li>
       <Modal
-        title="Yeni Kategori Ekle"
+        title={t("add-new-category")}
         open={isAddModalOpen}
         onCancel={() => setIsAddModalOpen(false)}
         footer={false}
@@ -77,7 +79,7 @@ const Categories = ({ data, setFiltered }) => {
         <Form layout="vertical" onFinish={onFinish} form={form}>
           <Form.Item
             name="title"
-            label="Kategori Ekle"
+            label={t("add-category")}
             rules={[
               { required: true, message: "Kategori Alanı Boş Geçilemez!" },
             ]}
@@ -86,7 +88,7 @@ const Categories = ({ data, setFiltered }) => {
           </Form.Item>
           <Form.Item className="mb-0 flex justify-end">
             <Button type="primary" htmlType="submit">
-              Oluştur
+             {t("creat")}
             </Button>
           </Form.Item>
         </Form>

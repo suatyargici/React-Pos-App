@@ -11,9 +11,16 @@
   "my-customers": "My customers",
   "in-basket": "The product in basket",
   "subtotal": "Subtotal",
-  "grand-total":"Grand Total",
-  "creat-order":"Creat Order",
-  "clear":"Clear",
-  "no-product":"There is no product in the cart"
-
+  "grand-total": "Grand Total",
+  "creat-order": "Creat Order",
+  "clear": "Clear",
+  "no-product": "There is no product in the cart",
+  "add-new-category": "Add new category",
+  "add-category":"Add category",
+  "creat":"creat",
+  "add-new-product":"Add new product",
+  "product-name":"Product name",
+  "product-img":"Product the image",
+  "product-price":"Product the price",
+  "product-select":"Product select"
 }

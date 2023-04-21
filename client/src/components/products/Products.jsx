@@ -5,6 +5,7 @@ import { PlusOutlined, EditOutlined } from "@ant-design/icons";
 import Add from "./Add";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Products = ({ categories, filtered, search }) => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -14,6 +15,7 @@ const Products = ({ categories, filtered, search }) => {
   };
 
   const { data } = useQuery("product", getProducts);
+  const { t } = useTranslation();
 
   console.log(data);
 

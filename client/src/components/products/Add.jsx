@@ -1,11 +1,13 @@
 import { Button, Form, Input, message, Modal, Select } from "antd";
 import axios from "axios";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { useQueryClient } from "react-query";
 
 const Add = ({ isAddModalOpen, setIsAddModalOpen, categories }) => {
   const [form] = Form.useForm();
   const queryClient = useQueryClient();
+  const { t } = useTranslation();
 
   const onFinish = (values) => {
     console.log(values)
@@ -22,7 +24,7 @@ const Add = ({ isAddModalOpen, setIsAddModalOpen, categories }) => {
 
   return (
     <Modal
-      title="Yeni Ürün Ekle"
+      title={t("add-new-product")}
       open={isAddModalOpen}
       onCancel={() => setIsAddModalOpen(false)}
       footer={false}
@@ -30,14 +32,14 @@ const Add = ({ isAddModalOpen, setIsAddModalOpen, categories }) => {
       <Form layout="vertical" onFinish={onFinish} form={form}>
         <Form.Item
           name="title"
-          label="Ürün Adı"
+          label={t("product-name")}
           rules={[{ required: true, message: "Ürün Adı Alanı Boş Geçilemez!" }]}
         >
           <Input placeholder="Ürün adı giriniz." />
         </Form.Item>
         <Form.Item
           name="img"
-          label="Ürün Görseli"
+          label={t("product-img")}
           rules={[
             { required: true, message: "Ürün Görseli Alanı Boş Geçilemez!" },
           ]}
@@ -46,7 +48,7 @@ const Add = ({ isAddModalOpen, setIsAddModalOpen, categories }) => {
         </Form.Item>
         <Form.Item
           name="price"
-          label="Ürün Fiyatı"
+          label={t("product-price")}
           rules={[
             { required: true, message: "Ürün Fiyatı Alanı Boş Geçilemez!" },
           ]}
@@ -55,7 +57,7 @@ const Add = ({ isAddModalOpen, setIsAddModalOpen, categories }) => {
         </Form.Item>
         <Form.Item
           name="category"
-          label="Kategori Seç"
+          label={t("product-select")}
           rules={[{ required: true, message: "Kategori Alanı Boş Geçilemez!" }]}
         >
           <Select
@@ -75,7 +77,7 @@ const Add = ({ isAddModalOpen, setIsAddModalOpen, categories }) => {
         </Form.Item>
         <Form.Item className="mb-0 flex justify-end">
           <Button type="primary" htmlType="submit">
-            Oluştur
+         {t("creat")}
           </Button>
         </Form.Item>
       </Form>

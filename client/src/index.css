@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Electrolize&family=Lato:wght@400;700&family=Noto+Sans+Chakma&display=swap');
+
+body{
+    margin:0;
+    font-family: 'Electrolize', sans-serif;
+    @apply bg-gray-50;
+}
+
+.ant-btn-primary{
+    background-color: #1677ff;
+  }
+
+
+.categories::-webkit-scrollbar {
+    display: none;
+  }
+  .products::-webkit-scrollbar {
+    display: none;
+  }
