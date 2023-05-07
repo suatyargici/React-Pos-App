@@ -16,6 +16,21 @@ const Switch = ({status}) => {
     }
   };
 
+  useEffect(() => {
+
+    let GetTheme = JSON.parse(localStorage.getItem("thm"));
+    console.log(GetTheme);
+    if (GetTheme === true) {
+      setIsSelected(true);
+    } else {
+      setIsSelected(false);
+    }
+  }, []);
+
+  useEffect(() => {
+ 
+  localStorage.setItem("thm",isSelected)
+  }, [isSelected]);
 
 
   
@@ -42,6 +57,15 @@ const Switch = ({status}) => {
           }
         )}
       />
+      <input type="checkbox"
+       
+        className="hidden"
+        checked={
+          isSelected
+        }
+
+        />
+      
       <span className="absolute top-2 left-3 text-white">TR</span>
       <span className="absolute top-2 right-2 text-white">EN</span>
     </div>

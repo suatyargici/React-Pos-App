@@ -21,30 +21,33 @@ import { useSelector } from "react-redux";
 import MobileMenu from "./MobilMenu";
 const Header = ({ setSearch }) => {
   const { t } = useTranslation();
-  const [status, setStatus] = useState(false);
+  const [statusDark, setStatusDark] = useState(false);
   const [close, setClose] = useState(false);
 
   const pathname = useLocation();
   var setTheme = document.body;
-  useEffect(() => {
-    if (status) {
+  const handleClick = () => {
+    setStatusDark(!statusDark);
+    if (statusDark) {
       setTheme.classList.add("dark");
       localStorage.setItem("PageTheme", JSON.stringify("DARK"));
     } else {
       setTheme.classList.remove("dark");
       localStorage.setItem("PageTheme", JSON.stringify("LIGHT"));
     }
-  }, [status]);
+  };
 
+
+  let GetTheme = JSON.parse(localStorage.getItem("PageTheme"));
+  console.log(GetTheme);
   useEffect(() => {
-    let GetTheme = JSON.parse(localStorage.getItem("PageTheme"));
-    console.log(GetTheme);
+   
     if (GetTheme === "DARK") {
       setTheme.classList.add("dark");
     } else {
       setTheme.classList.remove("dark");
     }
-  }, []);
+  }, [GetTheme]);
 
   const cart = useSelector((state) => state.cart);
 
@@ -65,12 +68,20 @@ const Header = ({ setSearch }) => {
             <h2 className="text-xl font-bold md:text-2xl">Anadolu Sofrası</h2>
           </Link>
         </div>
-        <Switch status={true} />
+        <Switch statusDark={true} />
         <div
-          onClick={() => setStatus(!status)}
+          onClick={handleClick}
           className="dark-mode hover:dark-mode flex  items-center justify-center max-[1280px]:hidden"
         >
-          {status ? (
+             <input type="checkbox"
+       
+       className="hidden"
+       checked={
+          statusDark
+       }
+
+       />
+          {statusDark ? (
             <CiLight
               size={30}
               style={{

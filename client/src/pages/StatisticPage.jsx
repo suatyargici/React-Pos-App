@@ -23,6 +23,7 @@ const StatisticPage = () => {
   console.log('data :>> ', data);
 
 const user = JSON.parse(localStorage.getItem("posUser"))
+console.log('user :>> ', user);
   const config = {
     data:data?.data,
     xField: "customerName",
